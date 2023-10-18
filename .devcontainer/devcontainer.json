@@ -3,7 +3,10 @@
 {
 	"name": "Go",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/go:1-1.21-bullseye",
+	// "image": "mcr.microsoft.com/devcontainers/go:1-1.21-bullseye",
+    "build": {
+		"dockerfile": "Dockerfile"
+	},
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
 			"plugins": "ssh-agent npm",
