@@ -18,7 +18,7 @@
         {
           "name": "grpc go",
           "commands": [
-            "cd backend-go && docker-compose up -d && go run main.go all"
+            "docker-compose -f apache-kafka/docker-compose.yaml up -d && docker-compose -f backend-go/docker-compose.yaml up -d && cd backend-go && go run main.go all"
           ],
           "order": 0,
           "autoExecuteCommands": true
