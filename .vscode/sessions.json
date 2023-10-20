@@ -18,7 +18,7 @@
         {
           "name": "grpc go",
           "commands": [
-            "cd backend-go && docker-compose up -d && go run main.go grpc"
+            "cd backend-go && docker-compose up -d && go run main.go all"
           ],
           "order": 0,
           "autoExecuteCommands": true
