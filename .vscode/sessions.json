@@ -23,6 +23,16 @@
           "order": 0,
           "autoExecuteCommands": true
         }
+      ],
+      [
+        {
+          "name": "nestjs",
+          "commands": [
+            "cd backend-nestjs"
+          ],
+          "order": 0,
+          "autoExecuteCommands": true
+        }
       ]
     ]
   }
