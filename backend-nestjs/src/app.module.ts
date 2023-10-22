@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { BankAccount } from './models/bank-account.model';
 import { BankAccountController } from './controllers/bank-account/bank-account.controller';
 import { ConsoleModule } from 'nestjs-console';
+import { PixKey } from './models/pix-key.model';
 
 @Module({
   imports: [
@@ -16,9 +17,9 @@ import { ConsoleModule } from 'nestjs-console';
       username: process.env.TYPEORM_USERNAME,
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_DATABASE,
-      entities: [BankAccount],
+      entities: [BankAccount, PixKey],
     }),
-    TypeOrmModule.forFeature([BankAccount]),
+    TypeOrmModule.forFeature([BankAccount, PixKey]),
   ],
   controllers: [BankAccountController],
 })
