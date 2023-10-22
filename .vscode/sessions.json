@@ -28,7 +28,7 @@
         {
           "name": "nestjs",
           "commands": [
-            "cd backend-nestjs"
+            "cd backend-nestjs && yarn start:dev"
           ],
           "order": 0,
           "autoExecuteCommands": true
