@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    build: .docker/postgres
+    container_name: imersao-fullcycle-nest-bank-db
+    restart: always
+    tty: true
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=nest
