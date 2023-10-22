@@ -28,7 +28,7 @@
         {
           "name": "nestjs",
           "commands": [
-            "cd backend-nestjs && yarn start:dev"
+            "cd backend-nestjs && docker-compose up -d && yarn start:dev"
           ],
           "order": 0,
           "autoExecuteCommands": true
