@@ -28,7 +28,17 @@
         {
           "name": "nestjs",
           "commands": [
-            "kill -9 $(lsof -t -i:3000) ; cd backend-nestjs && docker-compose up -d && yarn start:dev"
+            "kill -9 $(lsof -t -i:3001) ; cd backend-nestjs && docker-compose up -d && yarn start:dev"
+          ],
+          "order": 0,
+          "autoExecuteCommands": true
+        }
+      ],
+      [
+        {
+          "name": "nextjs",
+          "commands": [
+            "kill -9 $(lsof -t -i:3000) ; cd frontend-nextjs && yarn dev"
           ],
           "order": 0,
           "autoExecuteCommands": true
