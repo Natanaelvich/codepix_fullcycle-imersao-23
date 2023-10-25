@@ -5,6 +5,6 @@ import { ModelNotFoundExceptionFilter } from './exception-filters/model-not-foun
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new ModelNotFoundExceptionFilter());
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();
