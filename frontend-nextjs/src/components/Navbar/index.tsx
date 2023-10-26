@@ -1,8 +1,8 @@
 // @flow
 import classes from "./Navbar.module.scss";
 import Link from "next/link";
-import { BankAccount } from "../../model";
-import BankContext from "../../context/BankContext";
+import { BankAccount } from "@/model";
+import BankContext from "@/context/BankContext";
 import { useContext } from "react";
 import Image from "next/image";
 interface NavbarProps {
