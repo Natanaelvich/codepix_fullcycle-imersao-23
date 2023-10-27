@@ -16,6 +16,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
     "sass": "^1.69.4",
+    "slug": "^8.2.3",
     "sweetalert2": "^11.7.32",
     "sweetalert2-react-content": "^5.0.7"
   },
