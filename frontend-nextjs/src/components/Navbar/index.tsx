@@ -12,10 +12,11 @@ const Navbar = (props: NavbarProps) => {
   const { bankAccount } = props
   const bank = useContext(BankContext)
   return (
-    // <nav
-    //   className={`navbar navbar-expand-lg ${classes.root} ${classes[bank.cssCode]}`}
-    // >
-    <nav className={`navbar navbar-expand-lg ${classes.root}`}>
+    <nav
+      className={`navbar navbar-expand-lg ${classes.root} ${
+        classes[bank.cssCode]
+      }`}
+    >
       <div className={`container-fluid ${classes.navbarBody}`}>
         <Link href="/bank-accounts" as="/bank-accounts">
           <a className={`navbar-brand ${classes.navbarBrand}`} href="#">
