@@ -1,18 +1,30 @@
-// @flow
-import { GetServerSideProps, NextPage } from "next";
-import Link from "next/link";
-import * as React from "react";
-import BankAccountCard from "../components/BankAccountCard";
-import Layout from "../components/Layout";
-import Title from "../components/Title";
-import { BankAccount } from "../model";
-import { bankHttp } from "@/utils/http";
+import Link from 'next/link'
+import * as React from 'react'
+import BankAccountCard from '../components/BankAccountCard'
+import Layout from '../components/Layout'
+import Title from '../components/Title'
+import { BankAccount } from '../model'
+import { bankHttp } from '@/utils/http'
 
-interface BankAccountsListProps {
-  bankAccounts: BankAccount[];
-}
-const BankAccountsList: NextPage<BankAccountsListProps> = (props) => {
-  const { bankAccounts } = props;
+const BankAccountsList = async () => {
+  let bankAccounts: BankAccount[] = []
+  let error = null
+
+  try {
+    const { data } = await bankHttp.get<BankAccount[]>('bank-accounts')
+    bankAccounts = data
+  } catch (e) {
+    error = e
+  }
+
+  if (error) {
+    return (
+      <div>
+        <Title>Erro ao carregar contas bancárias</Title>
+      </div>
+    )
+  }
+
   return (
     // TODO: update layout to use selected bank account
     <Layout bankAccount={bankAccounts[0]}>
@@ -31,16 +43,7 @@ const BankAccountsList: NextPage<BankAccountsListProps> = (props) => {
         ))}
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default BankAccountsList;
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { data: bankAccounts } = await bankHttp.get("bank-accounts");
-  return {
-    props: {
-      bankAccounts,
-    },
-  };
-};
+export default BankAccountsList
