@@ -1,11 +1,12 @@
-import { createContext } from "react";
+'use client'
+import { createContext } from 'react'
 
 type BankContextType = {
-    name: string;
-    code: string;
-    cssCode: string;
-};
+  name: string
+  code: string
+  cssCode: string
+}
 
-const BankContext = createContext<BankContextType>({} as BankContextType);
+const BankContext = createContext<BankContextType>({} as BankContextType)
 
-export default BankContext;
+export default BankContext
