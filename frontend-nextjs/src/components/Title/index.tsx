@@ -1,15 +1,11 @@
-import classes from './Title.module.scss';
+import classes from './Title.module.scss'
 
 type Props = {
-    children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 const Title = (props: Props) => {
-    return (
-        <h1 className={classes.root}>
-            {props.children}
-        </h1>
-    );
-};
+  return <h1 className={classes.root}>{props.children}</h1>
+}
 
-export default Title;
+export default Title

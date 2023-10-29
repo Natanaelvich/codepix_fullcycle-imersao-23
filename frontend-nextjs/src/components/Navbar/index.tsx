@@ -1,23 +1,21 @@
 // @flow
-import classes from "./Navbar.module.scss";
-import Link from "next/link";
-import { BankAccount } from "@/model";
-import BankContext from "@/context/BankContext";
-import { useContext } from "react";
-import Image from "next/image";
+import classes from './Navbar.module.scss'
+import Link from 'next/link'
+import { BankAccount } from '@/model'
+import BankContext from '@/context/BankContext'
+import { useContext } from 'react'
+import Image from 'next/image'
 interface NavbarProps {
-  bankAccount?: BankAccount;
+  bankAccount?: BankAccount
 }
-const Navbar = (props : NavbarProps) => {
-  const { bankAccount } = props;
-  const bank = useContext(BankContext);
+const Navbar = (props: NavbarProps) => {
+  const { bankAccount } = props
+  const bank = useContext(BankContext)
   return (
     // <nav
     //   className={`navbar navbar-expand-lg ${classes.root} ${classes[bank.cssCode]}`}
     // >
-    <nav
-      className={`navbar navbar-expand-lg ${classes.root}`}
-    >
+    <nav className={`navbar navbar-expand-lg ${classes.root}`}>
       <div className={`container-fluid ${classes.navbarBody}`}>
         <Link href="/bank-accounts" as="/bank-accounts">
           <a className={`navbar-brand ${classes.navbarBrand}`} href="#">
@@ -53,7 +51,7 @@ const Navbar = (props : NavbarProps) => {
         )}
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

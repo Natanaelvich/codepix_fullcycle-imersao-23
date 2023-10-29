@@ -1,55 +1,55 @@
 // @flow
-import { useRouter } from "next/dist/client/router";
-import * as React from "react";
-import { useForm } from "react-hook-form";
-import Button from "../../../../../components/Button";
-import Card from "../../../../../components/Card";
-import Input from "../../../../../components/Input";
-import Select from "../../../../../components/Select";
-import FormButtonActions from "../../../../../components/FormButtonActions";
-import Layout from "../../../../../components/Layout";
-import Title from "../../../../../components/Title";
-import { GetServerSideProps, NextPage } from "next";
-import Link from "next/link";
-import { BankAccount } from "../../../../../model";
-import Modal from "@/utils/modal";
-import { bankHttp } from "@/utils/http";
+import { useRouter } from 'next/dist/client/router'
+import * as React from 'react'
+import { useForm } from 'react-hook-form'
+import Button from '../../../../../components/Button'
+import Card from '../../../../../components/Card'
+import Input from '../../../../../components/Input'
+import Select from '../../../../../components/Select'
+import FormButtonActions from '../../../../../components/FormButtonActions'
+import Layout from '../../../../../components/Layout'
+import Title from '../../../../../components/Title'
+import { GetServerSideProps, NextPage } from 'next'
+import Link from 'next/link'
+import { BankAccount } from '../../../../../model'
+import Modal from '@/utils/modal'
+import { bankHttp } from '@/utils/http'
 interface TransactionRegisterProps {
-  bankAccount: BankAccount;
+  bankAccount: BankAccount
 }
 
 type FormValues = {
-    pix_key_kind: string;
-    pix_key_key: string;
-    amount: number;
-    description: string;
-};
+  pix_key_kind: string
+  pix_key_key: string
+  amount: number
+  description: string
+}
 
 const TransactionRegister: NextPage<TransactionRegisterProps> = (props) => {
-  const {bankAccount} = props;
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { bankAccount } = props
+  const { register, handleSubmit } = useForm<FormValues>()
   const {
     query: { id },
     push,
-  } = useRouter();
+  } = useRouter()
 
   async function onSubmit(data: FormValues) {
     try {
       await bankHttp.post(`bank-accounts/${id}/transactions`, {
         ...data,
-        amount: new Number(data.amount),
-      });
+        amount: Number(data.amount),
+      })
       Modal.fire({
-        title: "Transação realizada com sucesso",
-        icon: "success",
-      });
-      push(`/bank-accounts/${id}`);
+        title: 'Transação realizada com sucesso',
+        icon: 'success',
+      })
+      push(`/bank-accounts/${id}`)
     } catch (e) {
-      console.error(e);
+      console.error(e)
       Modal.fire({
-        title: "Ocorreu um erro. Verifique o console",
-        icon: "error",
-      });
+        title: 'Ocorreu um erro. Verifique o console',
+        icon: 'error',
+      })
     }
   }
 
@@ -66,7 +66,11 @@ const TransactionRegister: NextPage<TransactionRegisterProps> = (props) => {
               </Select>
             </div>
             <div className="col-sm-8">
-              <Input name="pix_key_key" labelText="Chave" ref={register as any} />
+              <Input
+                name="pix_key_key"
+                labelText="Chave"
+                ref={register as any}
+              />
             </div>
           </div>
           <Input
@@ -77,7 +81,11 @@ const TransactionRegister: NextPage<TransactionRegisterProps> = (props) => {
             ref={register as any}
             defaultValue="0.00"
           />
-          <Input name="description" labelText="Descrição" ref={register as any} />
+          <Input
+            name="description"
+            labelText="Descrição"
+            ref={register as any}
+          />
           <FormButtonActions>
             <Button type="submit">Cadastrar</Button>
             <Link href="/bank-accounts/[id]" as={`/bank-accounts/${id}`}>
@@ -89,20 +97,20 @@ const TransactionRegister: NextPage<TransactionRegisterProps> = (props) => {
         </form>
       </Card>
     </Layout>
-  );
-};
+  )
+}
 
-export default TransactionRegister;
+export default TransactionRegister
 
 export const getServerSideProps: GetServerSideProps = async (cxt) => {
   const {
     query: { id },
-  } = cxt;
-  const { data: bankAccount } = await bankHttp.get(`bank-accounts/${id}`);
+  } = cxt
+  const { data: bankAccount } = await bankHttp.get(`bank-accounts/${id}`)
 
   return {
     props: {
       bankAccount,
     },
-  };
-};
+  }
+}

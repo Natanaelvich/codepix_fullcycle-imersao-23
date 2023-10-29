@@ -1,15 +1,15 @@
-import { useContext } from "react";
-import BankContext from "@/context/BankContext";
-import { BankAccount } from "@/model";
-import classes from "./BankAccountCard.module.scss";
+import { useContext } from 'react'
+import BankContext from '@/context/BankContext'
+import { BankAccount } from '@/model'
+import classes from './BankAccountCard.module.scss'
 interface BankAccountCardProps {
-  bankAccount: BankAccount;
+  bankAccount: BankAccount
 }
 const BankAccountCard: React.FunctionComponent<BankAccountCardProps> = (
-  props
+  props,
 ) => {
-  const { bankAccount } = props;
-  const bank = useContext(BankContext);
+  const { bankAccount } = props
+  const bank = useContext(BankContext)
   return (
     <article className={`${classes.root} ${classes[bank.cssCode]}`}>
       <div>
@@ -19,10 +19,12 @@ const BankAccountCard: React.FunctionComponent<BankAccountCardProps> = (
         </p>
       </div>
       <span
-        className={`fas fa-chevron-right ${classes.iconRight} ${classes[bank.cssCode]}`}
+        className={`fas fa-chevron-right ${classes.iconRight} ${
+          classes[bank.cssCode]
+        }`}
       />
     </article>
-  );
-};
+  )
+}
 
-export default BankAccountCard;
+export default BankAccountCard

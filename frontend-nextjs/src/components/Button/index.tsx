@@ -1,32 +1,34 @@
 // @flow
-import * as React from "react";
-import BankContext from "../../context/BankContext";
+import * as React from 'react'
+import BankContext from '../../context/BankContext'
 interface ButtonProps
   extends React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  variant?: "primary" | "info";
+  variant?: 'primary' | 'info'
 }
 
 const buttonClasses = {
-  primary: "btn-primary",
-  info: "btn-info",
-};
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-    const { variant = "primary", ...rest } = props;
-    const bank = React.useContext(BankContext);
+  primary: 'btn-primary',
+  info: 'btn-info',
+}
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
+    const { variant = 'primary', ...rest } = props
+    const bank = React.useContext(BankContext)
     const className = [
-        "btn",
-        buttonClasses[variant],
-        bank.cssCode,
-        props.className,
+      'btn',
+      buttonClasses[variant],
+      bank.cssCode,
+      props.className,
     ]
-        .join(" ")
-        .trim();
-    return <button className={className} {...rest} ref={ref} />;
-});
+      .join(' ')
+      .trim()
+    return <button className={className} {...rest} ref={ref} />
+  },
+)
 
-Button.displayName = "Button";
+Button.displayName = 'Button'
 
-export default Button;
+export default Button

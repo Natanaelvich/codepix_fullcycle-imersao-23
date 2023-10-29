@@ -1,54 +1,54 @@
 // @flow
-import classes from "./PixRegister.module.scss";
-import { GetServerSideProps, NextPage } from "next";
-import * as React from "react";
-import Card from "../../../../components/Card";
-import Input from "../../../../components/Input";
-import Layout from "../../../../components/Layout";
-import PixKeyCard from "../../../../components/PixKeyCard";
-import Title from "../../../../components/Title";
-import { BankAccount, PixKey } from "../../../../model";
-import FormButtonActions from "../../../../components/FormButtonActions";
-import Button from "../../../../components/Button";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
-import Modal from "@/utils/modal";
-import { bankHttp } from "@/utils/http";
+import classes from './PixRegister.module.scss'
+import { GetServerSideProps, NextPage } from 'next'
+import * as React from 'react'
+import Card from '../../../../components/Card'
+import Input from '../../../../components/Input'
+import Layout from '../../../../components/Layout'
+import PixKeyCard from '../../../../components/PixKeyCard'
+import Title from '../../../../components/Title'
+import { BankAccount, PixKey } from '../../../../model'
+import FormButtonActions from '../../../../components/FormButtonActions'
+import Button from '../../../../components/Button'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useForm } from 'react-hook-form'
+import Modal from '@/utils/modal'
+import { bankHttp } from '@/utils/http'
 
 interface PixRegisterProps {
-  pixKeys: PixKey[];
-  bankAccount: BankAccount;
+  pixKeys: PixKey[]
+  bankAccount: BankAccount
 }
 
 type FormValues = {
-    kind: string;
-    key: string;
-};
+  kind: string
+  key: string
+}
 
 const PixRegister: NextPage<PixRegisterProps> = (props) => {
-  const { pixKeys, bankAccount } = props;
+  const { pixKeys, bankAccount } = props
   const {
     query: { id },
-    push
-  } = useRouter();
+    push,
+  } = useRouter()
 
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit } = useForm<FormValues>()
 
-  async function onSubmit(data: FormValues){
-    try{
-      await bankHttp.post(`bank-accounts/${id}/pix-keys`, data);
+  async function onSubmit(data: FormValues) {
+    try {
+      await bankHttp.post(`bank-accounts/${id}/pix-keys`, data)
       Modal.fire({
         title: 'Chave cadastrada com sucesso',
-        icon: 'success'
-      });
-      push(`/bank-accounts/${id}`);
-    }catch(e){
-      console.error(e);
+        icon: 'success',
+      })
+      push(`/bank-accounts/${id}`)
+    } catch (e) {
+      console.error(e)
       Modal.fire({
         title: 'Ocorreu um erro. Verifique o console',
-        icon: 'error'
-      });
+        icon: 'error',
+      })
     }
   }
 
@@ -74,7 +74,11 @@ const PixRegister: NextPage<PixRegisterProps> = (props) => {
                 value="email"
                 ref={register as any}
               />
-              <Input name="key" labelText="Digite a chave" ref={register as any} />
+              <Input
+                name="key"
+                labelText="Digite a chave"
+                ref={register as any}
+              />
               <FormButtonActions>
                 <Button type="submit">Cadastrar</Button>
                 <Link href="/bank-accounts/[id]" as={`/bank-accounts/${id}`}>
@@ -94,16 +98,16 @@ const PixRegister: NextPage<PixRegisterProps> = (props) => {
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default PixRegister;
+export default PixRegister
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const {
     query: { id },
-  } = ctx;
-  const [{ data: pixKeys }, {data: bankAccount}] = await Promise.all([
+  } = ctx
+  const [{ data: pixKeys }, { data: bankAccount }] = await Promise.all([
     await bankHttp.get(`bank-accounts/${id}/pix-keys`),
     await bankHttp.get(`bank-accounts/${id}`),
   ])
@@ -111,7 +115,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       pixKeys,
-      bankAccount
+      bankAccount,
     },
-  };
-};
+  }
+}
